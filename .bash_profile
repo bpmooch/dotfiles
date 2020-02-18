@@ -1,7 +1,3 @@
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
 # Powerline
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
@@ -17,8 +13,10 @@ alias cr="cargo run"
 alias cb="cargo build"
 alias kx="kubectx"
 alias kc="kubectl"
+alias kcdev="kubectl --context=dev --namespace=cmucciolo"
+alias fluxsync="fluxctl sync --k8s-fwd-ns cmucciolo"
 alias vlt="VAULT_ADDR=https://vault.ua.dev vault"
 
-export PATH="$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/go/bin:$HOME/pgsql/bin:$PATH"
 
 export JIRA_API_TOKEN=7OwX47FW4WqT0oDxcqsTF6C9
