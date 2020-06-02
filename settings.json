@@ -1,0 +1,14 @@
+{
+  "workbench.colorTheme": "Dracula",
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "zenMode.fullScreen": false,
+  "zenMode.hideStatusBar": false,
+  "vim.handleKeys": {
+    "<C-k>": false
+},
+"window.zoomLevel": 1
+}

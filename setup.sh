@@ -31,5 +31,11 @@ mv "$PWD/kubectx" /usr/local/bin/kubectx
 apt-get update
 apt-get install jq -yq
 
+# vscode
+# settings.json linux path - ~/.config/Code/User/settings.json
+# install plugins silently?
+
+# dracula theme for bash
+
 ### Maybes
 # build .profile, move to ~/.profile, source in bashrc
