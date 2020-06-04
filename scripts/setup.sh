@@ -72,10 +72,6 @@ done
 # merge .config directory into $HOME
 rsync "$DOTFILES_DIR/.config/" "$HOME/.config/"
 
-# move settings.json to its place
-mkdir -p "$HOME/.config/Code/User/"
-cp "$DOTFILES_DIR/settings.json" "$HOME/.config/Code/User/settings.json"
-
 # setup vim
 ln -s "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
 sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
