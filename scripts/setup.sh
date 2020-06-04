@@ -22,11 +22,6 @@ if ! [ -f git ] ; then
 	apt-get install git -yq
 fi
 
-# curl
-if ! [ -f curl ] ; then
-	apt-get install curl -yq
-fi
-
 # vim-gtk3
 if ! [ -f vim ] ; then
 	apt-get install vim-gtk3 -yq

@@ -1,6 +1,6 @@
 # dotfiles
-## Resources
-* [apt guide](https://itsfoss.com/apt-command-guide/)
-* [some dudes setup](https://www.stefaanlippens.net/my_bashrc_aliases_profile_and_other_stuff/)
-* [bash functions](https://linuxize.com/post/bash-functions/)
-* [file test operators](https://linuxize.com/post/bash-check-if-file-exists/)
+```
+curl https://gist.githubusercontent.com/chrism00ch/bdfc9ba86970d55277184a637c0f46a8/raw/2e0a222c0a93235d8db3556f9d597c2b642c3262/setup.sh
+chmod +x setup.sh
+sudo ./setup.sh
+```
