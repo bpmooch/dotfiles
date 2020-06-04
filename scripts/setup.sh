@@ -64,9 +64,9 @@ DOTFILES_GIT='git@github.com:chrism00ch/dotfiles.git'
 DOTFILES_DIR="$HOME/dotfiles"
 sudo -u $SUDO_USER git clone $DOTFILES_GIT $DOTFILES_DIR
 
-for dotfile in "$DOTFILES_DIR/.*"
+for dotfile in "$DOTFILES_DIR/.bash_aliases" "$DOTFILES_DIR/.profile"
 do
-	echo "source $DOTFILES_DIR/$dotfile" >> "$HOME/.bashrc"
+	echo "source $dotfile" >> "$HOME/.bashrc"
 done
 
 # merge .config directory into $HOME
@@ -76,3 +76,7 @@ rsync "$DOTFILES_DIR/.config/" "$HOME/.config/"
 mkdir -p "$HOME/.config/Code/User/"
 cp "$DOTFILES_DIR/settings.json" "$HOME/.config/Code/User/settings.json"
 
+# setup vim
+ln -s "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
+sudo -u $SUDO_USER git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
