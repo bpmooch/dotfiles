@@ -8,7 +8,7 @@ function scoped_flux_sync {
 
 # General
 alias vm="vim +NERDTreeToggle"
-alias gs="git status"
+alias gits="git status"
 
 # below relies on git global alias
 # https://coderwall.com/p/euwpig/a-better-git-log
