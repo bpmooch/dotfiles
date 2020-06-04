@@ -5,17 +5,12 @@ if [ "$EUID" -ne 0 ] ; then
 	echo "Please run as root"
 	exit
 fi
-
-# username needs to be passed in 
-if [ $# -eq 0 ] ; then
-	echo 'username argument required. Please do something like ./setup.sh $USER'
-	exit
-fi
-HOME="/home/$1/"
+HOME="/home/$SUDO_USER"
 
 # only run if .bashrc exists
-if [ -f "$HOME/.bashrc" ] ; then
-	echo "$HOME/.bashrc is missing. Fix that then re-run"
+BASHRC_PATH="$HOME/.bashrc"
+if ! [ -f $BASHRC_PATH ] ; then
+	echo "$BASHRC_PATH is missing. Fix that then re-run"
 	exit
 fi
 
@@ -27,9 +22,20 @@ if ! [ -f git ] ; then
 	apt-get install git -yq
 fi
 
+# curl
+if ! [ -f curl ] ; then
+	apt-get install curl -yq
+fi
+
 # vim-gtk3
 if ! [ -f vim ] ; then
 	apt-get install vim-gtk3 -yq
+fi
+
+# terminator
+if ! [ -f terminator ] ; then
+	apt-get install terminator -yq
+fi
 
 # kubectl
 if ! [ -f kubectl ] ; then
@@ -42,6 +48,7 @@ fi
 if ! [ -f kubectx ] ; then
 	curl -LOs https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_linux_x86_64.tar.gz
 	tar -xvf "$PWD/kubectx_v0.9.0_linux_x86_64.tar.gz"
+	rm "$PWD/kubectx_v0.9.0_linux_x86_64.tar.gz"
 	rm "$PWD/LICENSE"
 	chmod +x "$PWD/kubectx"
 	mv "$PWD/kubectx" /usr/local/bin/kubectx
@@ -55,12 +62,17 @@ fi
 # setup bash environment
 DOTFILES_GIT='git@github.com:chrism00ch/dotfiles.git'
 DOTFILES_DIR="$HOME/dotfiles"
-git clone $DOTFILES_GIT $DOTFILES_DIR
+sudo -u $SUDO_USER git clone $DOTFILES_GIT $DOTFILES_DIR
 
-for dotfile in "$DOTFILES_DIR/.*" do
+for dotfile in "$DOTFILES_DIR/.*"
+do
 	echo "source $DOTFILES_DIR/$dotfile" >> "$HOME/.bashrc"
 done
+
+# merge .config directory into $HOME
+rsync "$DOTFILES_DIR/.config/" "$HOME/.config/"
 
 # move settings.json to its place
 mkdir -p "$HOME/.config/Code/User/"
 cp "$DOTFILES_DIR/settings.json" "$HOME/.config/Code/User/settings.json"
+
