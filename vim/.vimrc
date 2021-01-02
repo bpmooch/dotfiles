@@ -5,7 +5,7 @@ set number
 syntax on
 
 " personal
-set tabstop=8 softtabstop=0 noexpandtab shiftwidth=2 smarttab
+set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2 smarttab
 " ua standard
 " set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2
 
