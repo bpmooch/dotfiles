@@ -3,3 +3,5 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 EDITOR="gvim -v"
 export PATH="${PATH}:${HOME}/.krew/bin"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
