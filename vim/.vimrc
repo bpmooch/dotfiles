@@ -18,19 +18,30 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" General
 Plugin 'dracula/vim'
 Plugin 'w0rp/ale'
-Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'jparise/vim-graphql'
+
+" Rust
 Plugin 'rust-lang/rust.vim'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'mxw/vim-jsx'
+
+" Go
 Plugin 'fatih/vim-go'
+
+" Python
 Plugin 'hdima/python-syntax'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'jparise/vim-graphql'
+Plugin 'Quramy/vim-js-pretty-template'
+
+" Typescript
 Plugin 'leafgarland/typescript-vim'
-Plugin 'stephpy/vim-yaml'
+Plugin 'quramy/tsuquyomi'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -59,3 +70,13 @@ let g:airline#extensions#ale#enabled = 1
 
 " rust.vim
 let g:rustfmt_autosave = 1
+
+" vim js pretty template
+" Register tag name associated the filetype
+call jspretmpl#register_tag('gql', 'graphql')
+
+autocmd FileType javascript JsPreTmpl
+autocmd FileType javascript.jsx JsPreTmpl
+
+autocmd FileType typescript JsPreTmpl
+autocmd FileType typescript syn clear foldBraces " For leafgarland/typescript-vim users only
