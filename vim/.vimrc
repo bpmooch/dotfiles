@@ -3,6 +3,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set number
 syntax on
+set termguicolors
 
 " personal
 set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2 smarttab
@@ -23,6 +24,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'dracula/vim'
 Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-airline/vim-airline'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
@@ -57,6 +60,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" set theme
+set background=dark
+let g:gruvbox_italic = 1
+colorscheme gruvbox
 
 " ALE
 let g:ale_fixers = {
