@@ -4,6 +4,7 @@ filetype off                  " required
 set number
 syntax on
 set termguicolors
+let mapleader=","
 
 " personal
 set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2 smarttab
@@ -69,7 +70,8 @@ colorscheme gruvbox
 " ALE
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \}
 
 let g:ale_fix_on_save = 1
@@ -79,9 +81,22 @@ let g:airline#extensions#ale#enabled = 1
 " rust.vim
 let g:rustfmt_autosave = 1
 
+" Tsuquyomi: Typescript Language Server Frontend
+nnoremap <leader>def :TsuDefinition<CR>
+nnoremap <leader>ref :TsuReferences<CR>
+
+
 " vim js pretty template
 " Register tag name associated the filetype
 call jspretmpl#register_tag('gql', 'graphql')
+
+" NERDTreeToggle
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" Focus shortcut (<CR> means carriage return for EX commands)
+nnoremap <leader>nt :NERDTreeFocus<CR>
 
 autocmd FileType javascript JsPreTmpl
 autocmd FileType javascript.jsx JsPreTmpl
