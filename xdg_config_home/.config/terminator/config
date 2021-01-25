@@ -3,6 +3,7 @@
 [keybindings]
 [profiles]
   [[default]]
+    scrollback_infinite = True
     background_color = "#282a36"
     background_image = None
     font = Anonymous Pro 12

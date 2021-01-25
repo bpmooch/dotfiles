@@ -16,7 +16,13 @@ export PATH
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-. ~/.bash_aliases
-. ~/.profile
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
+
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

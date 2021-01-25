@@ -1,7 +1,6 @@
 # General
 alias vi="gvim -v"
 alias vim="gvim -v"
-alias vm="gvim -v +NERDTreeToggle"
 alias gits="git status"
 alias gitb="git branch"
 alias gitr="git rebase"
@@ -11,7 +10,7 @@ alias gitr="git rebase"
 alias gl="git lg"
 
 # Cloud Stuff
-function scoped_flux_sync {
+scoped_flux_sync() {
     fluxctl sync --k8s-fwd-ns $1
 }
 
