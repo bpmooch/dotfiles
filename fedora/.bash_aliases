@@ -18,3 +18,6 @@ alias kc='kubectl'
 alias kx='kubectl ctx'
 alias kn='kubectl ns'
 alias fluxsync=scoped_flux_sync
+
+# gcc
+alias c++=gcc
