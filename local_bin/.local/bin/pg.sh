@@ -3,7 +3,7 @@ set -e
 set -u
 
 usage() {
-  echo -n "pg.sh [OPTION]...
+	echo -n "pg.sh [OPTION]...
  Thin wrapper around psql that simplifies my primary use cases
  Options:
   -c, --config      Supply config file, by default checks for \$PWD/.env
@@ -23,30 +23,30 @@ usage() {
 
 ARGS=("psql" "--set" "AUTOCOMMIT=off" "--set" "ON_ERROR_STOP=on")
 build_command() {
-	if [ -n "$DATABASE" ] ; then
+	if [ -n "$DATABASE" ]; then
 		ARGS+=("-d" "$DATABASE")
 	fi
 
-	if [ -n "$HOST" ] ; then
+	if [ -n "$HOST" ]; then
 		ARGS+=("-h" "$HOST")
 	fi
 
-	if [ -n "$PORT" ] ; then
+	if [ -n "$PORT" ]; then
 		ARGS+=("-p" "$PORT")
 	fi
 
-	if [ -n "$USER" ] ; then
+	if [ -n "$USER" ]; then
 		ARGS+=("-U" "$USER")
 	fi
 
-	if [ -n "${FILENAME:-}" ] ; then
+	if [ -n "${FILENAME:-}" ]; then
 		ARGS+=("-f" "$FILENAME")
 	fi
 }
 
 psql_run() {
 	build_command
-	if [ -n "$PASSWORD" ] ; then
+	if [ -n "$PASSWORD" ]; then
 		PGPASSWORD="$PASSWORD" "${ARGS[@]}"
 	else
 		"${ARGS[@]}"
@@ -56,7 +56,7 @@ psql_run() {
 
 check_env() {
 	# config flag location
-	if [ -n "${CONFIG:-}" ] && [ -a "$CONFIG" ] ; then
+	if [ -n "${CONFIG:-}" ] && [ -a "$CONFIG" ]; then
 		# check extension
 		# if .yaml, yq
 		# else
@@ -69,7 +69,7 @@ check_env() {
 
 	# check .env
 	echo "No config supplied, checking $PWD/.env for config"
-	if [ -a "$PWD/.env" ] ; then
+	if [ -a "$PWD/.env" ]; then
 		set -o allexport
 		# shellcheck source=/dev/null
 		source "$PWD/.env"
@@ -94,40 +94,40 @@ check_env() {
 # as operands, even if they begin with the '-' character.
 
 PARAMS=""
-while (( "$#" )); do
-  case "$1" in
-		-h|-\?|--help)
-			usage
+while (("$#")); do
+	case "$1" in
+	-h | -\? | --help)
+		usage
+		exit 1
+		;;
+	-c | --config)
+		if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
+			CONFIG=$2
+			shift 2
+		else
+			echo "Error: Argument for $1 is missing" >&2
 			exit 1
-			;;
-    -c|--config)
-      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
-				CONFIG=$2
-        shift 2
-      else
-        echo "Error: Argument for $1 is missing" >&2
-        exit 1
-      fi
-      ;;
-    -f|--file)
-      if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
-				FILENAME=$2
-        shift 2
-      else
-        echo "Error: Argument for $1 is missing" >&2
-        exit 1
-      fi
-      ;;
-    --*=|-*) # unsupported flags
-      echo "Error: Unsupported flag $1" >&2
-      exit 1
-      ;;
+		fi
+		;;
+	-f | --file)
+		if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then
+			FILENAME=$2
+			shift 2
+		else
+			echo "Error: Argument for $1 is missing" >&2
+			exit 1
+		fi
+		;;
+	--*= | -*) # unsupported flags
+		echo "Error: Unsupported flag $1" >&2
+		exit 1
+		;;
 		# we don't actually care about positional args, maybe remove
-    *) # preserve positional arguments
-      PARAMS="$PARAMS $1"
-      shift
-      ;;
-  esac
+	*) # preserve positional arguments
+		PARAMS="$PARAMS $1"
+		shift
+		;;
+	esac
 done
 
 check_env
