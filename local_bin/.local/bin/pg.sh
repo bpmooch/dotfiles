@@ -3,7 +3,7 @@ set -e
 set -u
 
 usage() {
-  echo -n "uapg.sh [OPTION]...
+  echo -n "pg.sh [OPTION]...
  Thin wrapper around psql that simplifies my primary use cases
  Options:
   -c, --config      Supply config file, by default checks for \$PWD/.env
@@ -66,6 +66,7 @@ check_env() {
 	fi
 
 	# check .env
+	echo "No config supplied, checking $PWD/.env for config"
 	if [ -a "$PWD/.env" ] ; then
 		set -o allexport
 		# shellcheck source=/dev/null
@@ -73,6 +74,10 @@ check_env() {
 		set +o allexport
 		return 0
 	fi
+
+	echo "No valid config found"
+	usage
+	exit 1
 }
 
 # POSIX.1-2017
