@@ -10,7 +10,9 @@ usage() {
   -f, --file        Execute a sql file, printing the results
   -h, -?, --help    Display this help and exit
 
- Environment File Settings
+ All the variables in the supplied config file will be exported. The
+ following vars are used when available:
+
  HOST
  PORT
  DATABASE
