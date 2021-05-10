@@ -5,7 +5,7 @@ resources for Fedora 33
 Volta's installer doesn't work on fedora. I ended up having to build from source using [this guide](https://docs.volta.sh/contributing/). I also enjoyed reading through [this folder](https://github.com/volta-cli/volta/tree/main/dev/unix)
 
 1. `git clone git@github.com:volta-cli/volta.git`
-2. `dnf install openssl`
+2. `dnf install openssl openssl-devel`
 3. `./volta/dev/unix/volta-install.sh --release`
 
 ## [Terminator](https://terminator-gtk3.readthedocs.io/en/latest/) Ctrl+Shift+e isn't splitting vertically
