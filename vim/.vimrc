@@ -5,11 +5,7 @@ set number
 syntax on
 set termguicolors
 let mapleader=","
-
-" personal
-set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2 smarttab
-" ua standard
-" set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " vundle
 " set the runtime path to include Vundle and initialize
@@ -37,16 +33,6 @@ Plugin 'fatih/vim-go'
 " Python
 Plugin 'hdima/python-syntax'
 
-" Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'jparise/vim-graphql'
-Plugin 'Quramy/vim-js-pretty-template'
-
-" Typescript
-Plugin 'leafgarland/typescript-vim'
-Plugin 'quramy/tsuquyomi'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -70,25 +56,21 @@ colorscheme gruvbox
 " ALE
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'eslint'],
+\   'javascript': ['deno'],
+\   'typescript': ['deno'],
 \}
 
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 
+nmap gR <Plug>(ale_rename)
+nmap gr <Plug>(ale_find_reference)
+nmap gd <Plug>(ale_go_to_definition)
+nmap gD <Plug>(ale_go_to_type_definition)
+
 " rust.vim
 let g:rustfmt_autosave = 1
-
-" Tsuquyomi: Typescript Language Server Frontend
-nnoremap <leader>def :TsuDefinition<CR>
-nnoremap <leader>ref :TsuReferences<CR>
-
-
-" vim js pretty template
-" Register tag name associated the filetype
-call jspretmpl#register_tag('gql', 'graphql')
 
 " NERDTreeToggle
 " Exit Vim if NERDTree is the only window left.
@@ -97,9 +79,3 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " Focus shortcut (<CR> means carriage return for EX commands)
 nnoremap <leader>nt :NERDTreeFocus<CR>
-
-autocmd FileType javascript JsPreTmpl
-autocmd FileType javascript.jsx JsPreTmpl
-
-autocmd FileType typescript JsPreTmpl
-autocmd FileType typescript syn clear foldBraces " For leafgarland/typescript-vim users only
