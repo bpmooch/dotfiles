@@ -1,3 +1,4 @@
+# VSCode doesn't play nice
 xdg_config_home/.config/Code/Backups/
 xdg_config_home/.config/Code/Cache/
 xdg_config_home/.config/Code/Cookies
@@ -26,3 +27,7 @@ xdg_config_home/.config/Code/QuotaManager
 xdg_config_home/.config/Code/QuotaManager-journal
 xdg_config_home/.config/Code/Service Worker/
 xdg_config_home/.config/Code/databases/
+
+local_bin/.local/bin/*
+!local_bin/.local/bin/*.sh
+!local_bin/.local/bin/create-ssh-key
