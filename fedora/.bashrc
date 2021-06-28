@@ -28,3 +28,8 @@ export PATH="$HOME/go/bin:$PATH"
 . "$HOME/.cargo/env"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export TEST_VAR="foo"
+export TEST_VAR="bar"
+export DENO_INSTALL_ROOT="$HOME/.local/bin"
+
+source /home/mooch/.config/broot/launcher/bash/br

@@ -20,4 +20,8 @@
 .config/Code/machineid
 .config/Code/rapid_render.json
 .config/Code/storage.json
-
+.config/Code/.org.chromium.Chromium.SxMZ4g
+.config/Code/QuotaManager
+.config/Code/QuotaManager-journal
+.config/Code/Service Worker/
+.config/Code/databases/
