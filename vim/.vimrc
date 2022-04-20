@@ -18,11 +18,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " General
-Plugin 'dracula/vim'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'scrooloose/nerdtree'
-Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
+
+" Theme
+Plugin 'dracula/vim'
+Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'morhetz/gruvbox'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
@@ -49,25 +52,38 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " set theme
-set background=dark
-let g:gruvbox_italic = 1
-colorscheme gruvbox
+" set background=dark
+" let g:gruvbox_italic = 1
+" colorscheme gruvbox
+
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
 
 " ALE
+" Remember to install latest rust-analyzer
+let g:ale_linters = {
+\   'rust': ['analyzer'],
+\}
+
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['deno'],
 \   'typescript': ['deno'],
+\   'rust': ['rustfmt'],
 \}
 
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
+let g:ale_hover_cursor = 1
 let g:airline#extensions#ale#enabled = 1
 
 nmap gR <Plug>(ale_rename)
 nmap gr <Plug>(ale_find_reference)
 nmap gd <Plug>(ale_go_to_definition)
 nmap gD <Plug>(ale_go_to_type_definition)
+nmap gh <Plug>(ale_hover)
+" nnoremap <leader>gh :ALEHover<CR>
 
 " rust.vim
 let g:rustfmt_autosave = 1

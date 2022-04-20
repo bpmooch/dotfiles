@@ -28,3 +28,7 @@ fi
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+. "$HOME/.cargo/env"
+export DENO_INSTALL="/home/mooch/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH
