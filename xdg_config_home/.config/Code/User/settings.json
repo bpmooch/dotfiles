@@ -18,7 +18,6 @@
 		"<C-k>": false
 	},
 	"window.zoomLevel": 1,
-	"workbench.colorTheme": "Dracula",
 	"editor.tabSize": 2,
 	"editor.cursorStyle": "line",
 	"editor.lineNumbers": "on",
